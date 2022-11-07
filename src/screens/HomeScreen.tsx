@@ -6,8 +6,9 @@ import {
   ListRenderItem,
   Image,
   TouchableOpacity,
+  RefreshControl,
 } from 'react-native';
-import React, {useLayoutEffect} from 'react';
+import React, {useLayoutEffect, useState} from 'react';
 import UserProfileCard from '../components/user/UserProfile/UserProfileCard';
 import {useNavigation} from '@react-navigation/native';
 import {SContainer} from '../components/styled/SContainter';
@@ -23,6 +24,7 @@ import MainHeader from '../components/headers/MainHeader';
 import SHeader from '../components/headers/OrderHeader';
 
 export default function HomeScreen() {
+  const [refreshing, setRefreshing] = useState<boolean>(false);
   const {data, isLoading, refetch} = useQuery({
     queryKey: ['/api/order/history'],
     queryFn: getOrderHistory,
@@ -52,6 +54,16 @@ export default function HomeScreen() {
           renderItem={renderItem}
           key={'__'}
           keyExtractor={item => item.id}
+          refreshControl={
+            <RefreshControl
+              refreshing={refreshing}
+              onRefresh={async () => {
+                setRefreshing(true);
+                await refetch();
+                setRefreshing(false);
+              }}
+            />
+          }
         />
       </SafeAreaView>
     </View>

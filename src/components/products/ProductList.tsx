@@ -4,13 +4,21 @@ import {
   FlatList,
   ListRenderItem,
   ListRenderItemInfo,
+  RefreshControl,
 } from 'react-native';
-import React from 'react';
+import React, {useState} from 'react';
 import styled from 'styled-components/native';
 import ProductCard, {IProduct} from './ProductCard';
 import SFLListTabBarCrash from '../styled/SFLListTabBarCrash';
 
-const ProductList = ({products}: {products: IProduct[]}) => {
+const ProductList = ({
+  products,
+  refetch,
+}: {
+  products: IProduct[];
+  refetch: any;
+}) => {
+  const [isRefreshing, setRefreshing] = useState<boolean>(false);
   const renderItem: ListRenderItem<IProduct> = ({item}) => (
     <ProductCard data={item} />
   );
@@ -22,6 +30,16 @@ const ProductList = ({products}: {products: IProduct[]}) => {
       data={products}
       renderItem={renderItem}
       keyExtractor={(item: IProduct) => item.id}
+      refreshControl={
+        <RefreshControl
+          refreshing={isRefreshing}
+          onRefresh={async () => {
+            setRefreshing(true);
+            await refetch();
+            setRefreshing(false);
+          }}
+        />
+      }
     />
   );
 };

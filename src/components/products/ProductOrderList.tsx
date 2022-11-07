@@ -5,6 +5,7 @@ import {
   ListRenderItem,
   ListRenderItemInfo,
   ScrollView,
+  RefreshControl,
 } from 'react-native';
 import React, {useEffect, useState} from 'react';
 import styled from 'styled-components/native';

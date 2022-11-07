@@ -43,10 +43,11 @@ const OrderStatusScreen = () => {
   });
   const navigation =
     useNavigation<NativeStackNavigationProp<RootStackParamList>>();
-  useRefreshOnFocus(refetch);
+
   const [tot, SetTot] = useState(0);
   const [modalShown, setModalShown] = useState<boolean>(false);
   const [isL, setL] = useRecoilState(isLoadingSomething);
+  useRefreshOnFocus(refetch);
   useEffect(() => {
     SetTot(0);
     data?.cart.cartproducts.forEach(item =>

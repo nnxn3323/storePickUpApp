@@ -1,5 +1,5 @@
 import {View, Text, SafeAreaView, Button, Modal} from 'react-native';
-import React from 'react';
+import React, {useLayoutEffect} from 'react';
 import {SContainer} from '../components/styled/SContainter';
 import Confirmation from '../components/check/Confirmation';
 import {useNavigation} from '@react-navigation/native';
@@ -14,8 +14,10 @@ type RoomStackParamList = {
 const OrderConfirmedScreen = () => {
   const navigation =
     useNavigation<NativeStackNavigationProp<RoomStackParamList>>();
-  navigation.setOptions({
-    headerShown: false,
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      headerShown: false,
+    });
   });
   return (
     <SContainer>

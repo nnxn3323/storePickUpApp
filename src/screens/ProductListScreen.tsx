@@ -9,7 +9,7 @@ import Loader from '../components/Loading/Loader';
 import {useQuery} from '@tanstack/react-query';
 
 const ProductListScreen = () => {
-  const {data, isLoading, error} = useQuery({
+  const {data, isLoading, error, refetch} = useQuery({
     queryKey: ['/api/products'],
     queryFn: GetAllProducts,
   });
@@ -17,7 +17,11 @@ const ProductListScreen = () => {
     <SContainer>
       <SafeAreaView>
         <SHeader title="상품목록" />
-        {!data ? <Loader /> : <ProductList products={data?.products} />}
+        {!data ? (
+          <Loader />
+        ) : (
+          <ProductList products={data?.products} refetch={refetch} />
+        )}
       </SafeAreaView>
     </SContainer>
   );
