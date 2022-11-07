@@ -27,7 +27,7 @@ const MyPageScreen = () => {
         <SHeader title="마이페이지" />
 
         <SText textWeight={600} textSize={36} style={{textAlign: 'center'}}>
-          {data?.me.data?.username!}(으)로 로그인 됨
+          {data?.me.username}(으)로 로그인 됨
         </SText>
         {isL ? <Loader /> : null}
         <BottomButton>

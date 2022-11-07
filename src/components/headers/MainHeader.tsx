@@ -7,7 +7,7 @@ const MainHeader = () => {
   return (
     <HeaderBackground>
       <FeatherIcon
-        size={40}
+        size={36}
         name="bell"
         color="gray"
         style={{padding: 5, aspectRatio: 1}}
@@ -20,7 +20,7 @@ const MainHeader = () => {
       />
       <FeatherIcon
         name="shopping-cart"
-        size={40}
+        size={36}
         color={'gray'}
         style={{padding: 5, aspectRatio: 1}}
       />
@@ -30,7 +30,7 @@ const MainHeader = () => {
 
 export const HeaderBackground = styled.View`
   flex-direction: row;
-  padding-left: 4px;
+  padding-left: 12px;
   padding-right: 12px;
   padding-top: 6px;
   padding-bottom: 6px;
